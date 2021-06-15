@@ -39,7 +39,7 @@ An overview of the code structure and usages.
  /**
  * At the top of the documentation you will see an explanation of what the method does.
  *
- * @param (the parameter) This is something that is passed through the method and a breif explanation of what it does is given.
+ * @param (the parameter) This is something that is passed through the method and a brief explanation of what it does is given.
  */
 ```
 
