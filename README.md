@@ -1,5 +1,5 @@
 # Tecknix Client Bukkit API
-## This is a fully featured open source Bukkit API.
+## A fully featured open source Bukkit API.
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
