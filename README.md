@@ -36,48 +36,48 @@ An overview of the code structure and usages.
 
 - JavaDoc:
 ```
-    /**
-     * At the top of the documentation you will see an explanation of what the method does.
-     *
-     * @param (the parameter) This is something that is passed through the method and a breif explanation of what it does is given.
-     */
+ /**
+ * At the top of the documentation you will see an explanation of what the method does.
+ *
+ * @param (the parameter) This is something that is passed through the method and a breif explanation of what it does is given.
+ */
 ```
 
 - Notifications:
 ```java
-   //The notification needs to be declared.
-   private final TCNotification exampleNotification = new TCNotification(TCNotification.Type.INFO, "This is a notification!", 5);
-   //The player that the notification is being sent to needs to be defined.
-   final Player player = Bukkit.getPlayer("Frostei");
-   //Fire the exampleNotification#sendPacket(player); where you wish to send them the notification.
-   this.exampleNotification.sendPacket(player);
+//The notification needs to be declared.
+private final TCNotification exampleNotification = new TCNotification(TCNotification.Type.INFO, "This is a notification!", 5);
+//The player that the notification is being sent to needs to be defined.
+final Player player = Bukkit.getPlayer("Frostei");
+//Fire the exampleNotification#sendPacket(player); where you wish to send them the notification.
+this.exampleNotification.sendPacket(player);
 ```
 
 - Cps Cooldown:
 ```java
-   //Declare a player that will receive the packet.
-   final Player player = Bukkit.getPlayer("Frostei");
-   //Send the packet to the player.
-   TecknixAPI.getInstance().sendPacket(player, new TCPacketCpsCooldown(true);
-   //Note "true" disables the cooldown and "false" enables it!
+//Declare a player that will receive the packet.
+final Player player = Bukkit.getPlayer("Frostei");
+//Send the packet to the player.
+TecknixAPI.getInstance().sendPacket(player, new TCPacketCpsCooldown(true);
+//Note "true" disables the cooldown and "false" enables it!
 ```
 
 - Waypoints:
 ```java
-   //In TecknixAPI.java there is a list of waypoints you can add a waypoint to this list with:
-   TecknixAPI.getInstance().getWaypoints().add(new TCWaypoint("name", "world", "server", x, y, z, red, green, blue);
-   //Or:
-   TecknixAPI.getInstance().getWaypoints().add(new TCWaypoint("name", "world", "server", x, y, z, integerColor);
-   //Declare a player.
-   final Player player = Bukkit.getPlayer("Frostei");   
-   //Send the packet to the player.
-   for (TCWaypoint waypoint : TecknixAPI.getInstance().getWaypoints()) {
-        waypoint.sendAddPacket(player);
-   }
+//In TecknixAPI.java there is a list of waypoints you can add a waypoint to this list with:
+TecknixAPI.getInstance().getWaypoints().add(new TCWaypoint("name", "world", "server", x, y, z, red, green, blue);
+//Or:
+TecknixAPI.getInstance().getWaypoints().add(new TCWaypoint("name", "world", "server", x, y, z, integerColor);
+//Declare a player.
+final Player player = Bukkit.getPlayer("Frostei");   
+//Send the packet to the player.
+for (TCWaypoint waypoint : TecknixAPI.getInstance().getWaypoints()) {
+    waypoint.sendAddPacket(player);
+}
    
-   //Removal...
-   //Follow previous steps but use the below instead when sending the packet:
-   waypoint.sendRemovePacket(player);
+//Removal...
+//Follow previous steps but use the below instead when sending the packet:
+waypoint.sendRemovePacket(player);
 ```
 ## License
 
