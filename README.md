@@ -34,15 +34,6 @@ For people who wish to customize or add to our API for their server.
 
 An overview of the code structure and usages.
 
-- JavaDoc:
-```
- /**
- * At the top of the documentation you will see an explanation of what the method does.
- *
- * @param (the parameter) This is something that is passed through the method and a brief explanation of what it does is given.
- */
-```
-
 - Notifications:
 ```java
 //The notification needs to be declared.
