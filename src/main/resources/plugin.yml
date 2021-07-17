@@ -1,7 +1,6 @@
 name: TecknixAPI
 version: ${project.version}
 main: com.tecknix.api.TecknixAPI
-load: STARTUP
 authors: [ Tecknix Software Development Team ]
 description: Bukkit API for Tecknix Client.
 website: https://tecknix.com

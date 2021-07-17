@@ -34,14 +34,12 @@ public class TCPacketWaypointAdd extends TCPacket {
     private final String name;
     private final String world;
     private final String server;
-
-    private final int x;
-    private final int y;
-    private final int z;
-
-    private final int red;
-    private final int green;
-    private final int blue;
+    private final Integer x;
+    private final Integer y;
+    private final Integer z;
+    private final Integer red;
+    private final Integer green;
+    private final Integer blue;
 
     @Override
     public void write(PacketBuffer buf) {

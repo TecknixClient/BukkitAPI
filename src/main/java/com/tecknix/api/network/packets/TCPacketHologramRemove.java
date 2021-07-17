@@ -27,16 +27,17 @@ package com.tecknix.api.network.packets;
 import com.tecknix.api.network.PacketBuffer;
 import com.tecknix.api.network.TCPacket;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
-public class TCPacketCpsCooldown extends TCPacket {
+public class TCPacketHologramRemove extends TCPacket {
 
-    private final Boolean disabled;
+    private final Integer id;
+    private final String content;
 
     @Override
     public void write(PacketBuffer buf) {
-        buf.getBuf().writeBoolean(this.disabled);
+        buf.writeInt(this.id);
+        buf.writeString(this.content);
     }
 
     @Override public void read(PacketBuffer buf) {}

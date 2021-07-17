@@ -27,10 +27,7 @@ package com.tecknix.api.network;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.tecknix.api.TecknixAPI;
-import com.tecknix.api.network.packets.TCPacketCpsCooldown;
-import com.tecknix.api.network.packets.TCPacketNotification;
-import com.tecknix.api.network.packets.TCPacketWaypointAdd;
-import com.tecknix.api.network.packets.TCPacketWaypointRemove;
+import com.tecknix.api.network.packets.*;
 import io.netty.buffer.Unpooled;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,10 +40,9 @@ public abstract class TCPacket {
     public abstract void write(PacketBuffer buf);
     public abstract void read(PacketBuffer buf);
 
-    @SuppressWarnings("deprecation")
     public static TCPacket handle(byte[] data) {
-        PacketBuffer packetBuffer = new PacketBuffer(Unpooled.wrappedBuffer(data));
-        Class packetClass = PACKET_MAP.inverse().get(packetBuffer.readInt());
+        final PacketBuffer packetBuffer = new PacketBuffer(Unpooled.wrappedBuffer(data));
+        final Class packetClass = PACKET_MAP.inverse().get(packetBuffer.readInt());
 
         if (packetClass == null) {
             return null;
@@ -54,7 +50,7 @@ public abstract class TCPacket {
 
         try {
             // Reads the packets bytes.
-            TCPacket tecknixPacket = (TCPacket) packetClass.newInstance();
+            final TCPacket tecknixPacket = (TCPacket) packetClass.newInstance();
             tecknixPacket.read(packetBuffer);
             return tecknixPacket;
         } catch (IllegalAccessException | InstantiationException ex) {
@@ -64,7 +60,7 @@ public abstract class TCPacket {
     }
 
     public static byte[] getPacketContent(TCPacket packet) {
-        PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
+        final PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
         // Writes the packet bytes.
         packetBuffer.writeInt(PACKET_MAP.get(packet.getClass()));
         packet.write(packetBuffer);
@@ -86,5 +82,7 @@ public abstract class TCPacket {
         register(1, TCPacketWaypointAdd.class);
         register(2, TCPacketWaypointRemove.class);
         register(3, TCPacketCpsCooldown.class);
+        register(4, TCPacketHologramAdd.class);
+        register(5, TCPacketHologramRemove.class);
     }
 }

@@ -9,6 +9,7 @@
 - Send a welcome message to the user.
 - Get a list of players running Tecknix Client for any usage.
 - Send notifications to players clients.
+- Create server holograms.
 - Have server waypoints that can be added and removed.
 - Easy to use API code with event based implementation.
 
@@ -69,6 +70,22 @@ for (TCWaypoint waypoint : TecknixAPI.getInstance().getWaypoints()) {
 //Removal...
 //Follow previous steps but use the below instead when sending the packet:
 waypoint.sendRemovePacket(player);
+```
+
+- Holograms:
+```java
+//In TecknixAPI.java there is a list of holograms you can add to.
+TecknixAPI.getInstance().getHolograms().add(new TCHologram(1, "Hologram!", 1d, 1d, 1d));
+//Declare a player.
+final Player player = Bukkit.getPlayer("Frostei");   
+//Send the packet to the player.
+for (TCHologram hologram : TecknixAPI.getInstance().getHolograms()) {
+    hologram.sendAddPacket(player);
+}
+   
+//Removal...
+//Follow previous steps but use the below instead when sending the packet:
+hologram.sendRemovePacket(player);
 ```
 ## License
 

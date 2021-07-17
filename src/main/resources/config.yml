@@ -2,13 +2,21 @@ disable-cps-cooldown: false # Disable the 1.8x Click delay timer.
 thank-for-using-tecknix: true # Sends a welcome message and notification to the player if they are using Tecknix Client.
 
 waypoints:
-  - Spawn: # Must me the same name as the waypoint.
-      name: "Spawn" # Waypoint name (this is displayed)
-      world: "Overworld" # The world the waypoint is in.
-      server: "0" # The server IP (This is very important or the waypoint will not render!)
-      x: 0 # Waypoint X Coordinate
-      y: 69 # Waypoint Y Coordinate
-      z: 0 # Waypoint Z Coordinate
-      red: 255 # Waypoint Red Integer.
-      green: 255 # Waypoint Green Integer.
-      blue: 255 # Waypoint Blue Integer.
+    - Spawn: # Give the waypoint a name!
+          name: "Spawn" # Waypoint name (this is displayed)
+          world: "Overworld" # The world the waypoint is in.
+          server: "0" # The server IP (This is very important or the waypoint will not render!)
+          x: 0 # Waypoint X Coordinate.
+          y: 69 # Waypoint Y Coordinate.
+          z: 0 # Waypoint Z Coordinate.
+          red: 255 # Waypoint Red Integer.
+          green: 255 # Waypoint Green Integer.
+          blue: 255 # Waypoint Blue Integer.
+
+holograms:
+    - Spawn: # Call it whatever you wish.
+          identifier: 1 # Hologram identifier to ensure there are no conflicts.
+          content: "Spawn!" # Hologram content. Up to 1000 characters and supports bukkit color codes.
+          x: 0 # Hologram X Coordinate.
+          y: 50 # Hologram Y Coordinate.
+          z: 0 # Hologram Z Coordinate.

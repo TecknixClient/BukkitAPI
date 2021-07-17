@@ -22,22 +22,37 @@
  * SOFTWARE.
  */
 
-package com.tecknix.api.network.packets;
+package com.tecknix.api.object;
 
-import com.tecknix.api.network.PacketBuffer;
-import com.tecknix.api.network.TCPacket;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.tecknix.api.TecknixAPI;
+import com.tecknix.api.network.packets.TCPacketNotification;
+import org.bukkit.entity.Player;
 
-@AllArgsConstructor
-public class TCPacketCpsCooldown extends TCPacket {
+public class TCNotification {
 
-    private final Boolean disabled;
+    private final TCPacketNotification packet;
 
-    @Override
-    public void write(PacketBuffer buf) {
-        buf.getBuf().writeBoolean(this.disabled);
+    /**
+     * Notification using type, content and time.
+     *
+     * @param type Notification type. (Possible types in the below enum)
+     * @param content Notification content as a string. This allows a maximum length of 200 characters.
+     * @param time Notification time in seconds. This can be as long as you would like.
+     */
+    public TCNotification(Type type, String content, int time) {
+        this.packet = new TCPacketNotification(type, content, time);
     }
 
-    @Override public void read(PacketBuffer buf) {}
+    /**
+     * Sends a notification packet to a bukkit player.
+     *
+     * @param player The bukkit player entity.
+     */
+    public void sendPacket(Player player) {
+        TecknixAPI.getInstance().sendPacket(player, packet);
+    }
+
+    public enum Type {
+        INFO, WARNING, ERROR
+    }
 }

@@ -27,8 +27,9 @@ package com.tecknix.api.listener;
 import com.tecknix.api.TecknixAPI;
 import com.tecknix.api.network.TCPacket;
 import com.tecknix.api.network.packets.TCPacketCpsCooldown;
-import com.tecknix.api.notification.TCNotification;
-import com.tecknix.api.waypoint.TCWaypoint;
+import com.tecknix.api.object.TCHologram;
+import com.tecknix.api.object.TCNotification;
+import com.tecknix.api.object.TCWaypoint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -60,7 +61,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
 
             final Player player = event.getPlayer();
 
@@ -68,7 +69,7 @@ public class PlayerListener implements Listener {
                 final List<TCPacket> queuedPackets = this.plugin.getQueuedPackets().remove(player.getUniqueId());
 
                 if (queuedPackets != null) {
-                    for (TCPacket packet : queuedPackets) {
+                    for (final TCPacket packet : queuedPackets) {
                         // Send all of the queued packets to the client.
                         this.plugin.sendPacket(player, packet);
                     }
@@ -87,8 +88,15 @@ public class PlayerListener implements Listener {
 
                 if (!this.plugin.getWaypoints().isEmpty()) {
                     // for all of the loaded waypoints from the config, Send the add packet.
-                    for (TCWaypoint waypoint : this.plugin.getWaypoints()) {
+                    for (final TCWaypoint waypoint : this.plugin.getWaypoints()) {
                         waypoint.sendAddPacket(player);
+                    }
+                }
+
+                if (!this.plugin.getHolograms().isEmpty()) {
+                    // for all of the loaded holograms from the config, Send the add packet.
+                    for (final TCHologram hologram : this.plugin.getHolograms()) {
+                        hologram.sendAddPacket(player);
                     }
                 }
             } else {

@@ -26,16 +26,15 @@ package com.tecknix.api.network.packets;
 
 import com.tecknix.api.network.PacketBuffer;
 import com.tecknix.api.network.TCPacket;
-import com.tecknix.api.notification.TCNotification;
+import com.tecknix.api.object.TCNotification;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
 public class TCPacketNotification extends TCPacket {
 
     private final TCNotification.Type type;
     private final String content;
-    private final int time;
+    private final Integer time;
 
     @Override
     public void write(PacketBuffer buf) {
